@@ -1,3 +1,5 @@
+## Esta es la version sin bugs
+
 from turtle import Screen
 from snake import Snake
 from food import Food

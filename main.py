@@ -46,12 +46,13 @@ while game_is_on:
     # Detect collision with food
     if snake.head.distance(food) < 15:
         if food.is_special:
-            scoreboard.increase_score(random.randint(1, 3))
-            food.reset_special_food()
-            missed = False
+            score_increment = random.randint(1, 3)
         else:
-            scoreboard.increase_score(1)
-            missed = False
+            score_increment = 1
+    
+        scoreboard.increase_score(score_increment)
+        food.reset_special_food()
+        missed = False
         food.refresh()  # Refresh position of food
         snake.extend()
 

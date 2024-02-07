@@ -15,6 +15,7 @@ screen.tracer(0)
 snake = Snake()
 food = Food()
 scoreboard = Scoreboard()
+scoreboard.draw_permanent_border()
 
 screen.listen()
 screen.onkey(snake.up, "Up")
@@ -34,6 +35,7 @@ while game_is_on:
 
     # Crear comida especial si la serpiente ha alcanzado una longitud múltiplo de 5 y no se ha fallado en recogerla antes
     if len(snake.segments) % 5 == 0 and not food.is_special and not missed:
+        food.refresh()
         food.special_food()
         special_food_timer = time.time()
 
@@ -44,12 +46,13 @@ while game_is_on:
     # Detect collision with food
     if snake.head.distance(food) < 15:
         if food.is_special:
-            scoreboard.increase_score(random.randint(1, 3))
-            food.reset_special_food()
-            missed = False
+            score_increment = random.randint(1, 3)
         else:
-            scoreboard.increase_score(1)
-            missed = False
+            score_increment = 1
+    
+        scoreboard.increase_score(score_increment)
+        food.reset_special_food()
+        missed = False
         food.refresh()  # Refresh position of food
         snake.extend()
 

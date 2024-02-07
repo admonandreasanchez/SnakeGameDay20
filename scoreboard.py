@@ -32,14 +32,26 @@ class Scoreboard(Turtle):
         self.score = 0
         self.update_scoreboard()
 
-    def increase_score(self):
-        self.score += 1
+    def increase_score(self, score_increment):
+        self.score += score_increment
         self.clear()
         self.penup()
         self.color('white')
         self.speed("fastest")
         self.goto(-10, 270)
         self.update_scoreboard()
+
+    def draw_permanent_border(self):
+        border = Turtle()
+        border.penup()
+        border.color('white')
+        border.speed("fastest")
+        border.goto(-300, 300)
+        border.pendown()
+        for _ in range(4):
+            border.forward(600)
+            border.right(90)
+        border.hideturtle()
 
 
 
